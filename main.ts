@@ -16,12 +16,14 @@ function createWindow(): BrowserWindow {
   win = new BrowserWindow({
     x: 0,
     y: 0,
-    width: size.width,
-    height: size.height,
+    width: 450,
+    height: 200,
+    backgroundColor: '#FFF',
     webPreferences: {
       nodeIntegration: true,
       allowRunningInsecureContent: (serve) ? true : false,
     },
+    frame: false
   });
 
   if (serve) {
@@ -49,18 +51,21 @@ function createWindow(): BrowserWindow {
     win = null;
   });
 
+ 
   return win;
 }
 
 try {
 
   app.allowRendererProcessReuse = true;
-
+  
   // This method will be called when Electron has finished
   // initialization and is ready to create browser windows.
   // Some APIs can only be used after this event occurs.
   // Added 400 ms to fix the black background issue while using transparent window. More detais at https://github.com/electron/electron/issues/15947
-  app.on('ready', () => setTimeout(createWindow, 400));
+  app.on('ready', () => {
+    setTimeout(createWindow, 400);
+  });
 
   // Quit when all windows are closed.
   app.on('window-all-closed', () => {
@@ -81,7 +86,17 @@ try {
 
   
 
+  
+
 } catch (e) {
   // Catch Error
   // throw e;
 }
+
+
+
+
+
+ 
+ 
+

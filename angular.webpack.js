@@ -14,7 +14,11 @@ module.exports = (config, options) => {
 
             let fileReplacementParts = fileReplacement['with'].split('.');
             if (fileReplacementParts.length > 1 && ['web'].indexOf(fileReplacementParts[1]) >= 0) {
-                config.target = 'web';
+                // config.target = 'web';
+                //WORKAROUND PER EVITARE CHE QUANDO APRE ANCHE IL BROWSER
+                //SI CERCA UNA DIPENDENZA CHE NON VIENE INCLUSA COL RENDEreR WEB
+                //QUESTO NON FA FUNZIONARE PERO' NEL BROWSER
+                config.target = 'electron-renderer';
             }
             break;
         }
